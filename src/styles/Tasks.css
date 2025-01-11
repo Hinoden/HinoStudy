@@ -1,0 +1,36 @@
+#TasksHeader{
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    gap: 10px;
+    color: black;
+    padding: 0px 4px;
+}
+
+#Title{
+    font-size: 1.2rem;
+}
+
+button{
+    padding: 3px 3px;
+}
+
+#userInput{
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    min-height: 100px;
+    background-color: white;
+    color: black;
+    padding: 20px;
+    margin: 10px 0;
+    outline: none;
+    border-radius: 5px;
+}
+
+#userInput button{
+    width: 60px;
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+}

@@ -1,0 +1,23 @@
+.NavContainer{
+    background-color: rgb(115, 160, 255);
+    position: fixed;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 0px 20px;
+    z-index: 1000;
+}
+
+.ButContainer{
+    display: flex;
+    gap: 10px;
+    padding-right: 40px;
+}
+
+#logo{
+    font-weight: bold;
+    font-size: 1.5rem;
+}

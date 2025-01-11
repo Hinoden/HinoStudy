@@ -1,0 +1,24 @@
+body {
+  background-color: rgb(196, 231, 255);
+  margin: 0;
+  padding: 0;
+}
+
+.HorizontalContainer{
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 20px;
+  margin-top: -300px;
+}
+
+.TasksContainer{
+  padding-left: 20px;
+  width: 400px;
+  margin: 0;
+}
+
+.TimerContainer{
+  
+}
