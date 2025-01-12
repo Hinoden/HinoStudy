@@ -1,6 +1,7 @@
 #TasksHeader{
     display: flex;
     align-items: center;
+    justify-content: center;
     font-weight: bold;
     gap: 10px;
     color: black;
@@ -9,6 +10,7 @@
 
 #Title{
     font-size: 1.2rem;
+    text-align: center;
 }
 
 button{
@@ -17,20 +19,13 @@ button{
 
 #userInput{
     position: relative;
-    width: 100%;
+    width: 300px;
     max-width: 400px;
     min-height: 100px;
     background-color: white;
     color: black;
     padding: 20px;
-    margin: 10px 0;
+    margin: 10px auto;
     outline: none;
     border-radius: 5px;
-}
-
-#userInput button{
-    width: 60px;
-    position: absolute;
-    bottom: 15px;
-    right: 15px;
 }
