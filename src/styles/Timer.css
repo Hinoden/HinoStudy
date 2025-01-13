@@ -32,6 +32,7 @@ input:hover{
     background-color: rgb(221, 193, 255);
     box-shadow: 5px 4px 6px rgba(141, 70, 255, 0.4);
     padding: 1rem 0;
+    border-radius: 5px;
 }
 
 .column{
@@ -63,6 +64,11 @@ input:hover{
 
 .danger-button{
     background-color: rgb(255, 138, 138);
+    padding: 5px 20px;
+}
+
+.skip-button{
+    background-color: rgb(255, 148, 255);
     padding: 5px 20px;
 }
 
