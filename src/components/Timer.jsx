@@ -102,15 +102,15 @@ function Timer() {
                 <BsStopwatch className="stop-watch" />
                 <div className="column">
                     <label>Hours</label>
-                    <input value={hours} onChange={changeHours} />
+                    <input id="timerValue" value={hours} onChange={changeHours} />
                 </div>
                 <div className="column">
                     <label>Minutes</label>
-                    <input value={minutes} onChange={changeMinutes} />
+                    <input id="timerValue" value={minutes} onChange={changeMinutes} />
                 </div>
                 <div className="column">
                     <label>Seconds</label>
-                    <input value={seconds} onChange={changeSeconds} />
+                    <input id="timerValue" value={seconds} onChange={changeSeconds} />
                 </div>
             </div>
 

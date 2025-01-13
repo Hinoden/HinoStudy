@@ -5,7 +5,7 @@ label{
     margin-left: -15px;
 }
 
-input{
+#timerValue{
     width: 100px;
     margin-right: 1rem;
     background-color: rgb(255, 253, 226);
@@ -19,7 +19,7 @@ input{
     border-radius: 5px;
 }
 
-input:hover{
+#timerValue:hover{
     background-color: rgb(176, 113, 252);
 }
 
