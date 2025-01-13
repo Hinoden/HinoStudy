@@ -19,6 +19,7 @@
 
 .PopupContainer{
     margin-left: auto;
+    z-index: 1000;
 }
 
 #logo{
