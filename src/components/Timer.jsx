@@ -4,13 +4,19 @@ import { BsFillPlayFill, BsPauseFill, BsStopFill } from "react-icons/bs";
 import { IoIosSkipForward } from "react-icons/io";
 import '../styles/Timer.css';
 
-function Timer() {
-    const [hours, setHours] = useState(0);
-    const [minutes, setMinutes] = useState(0);
-    const [seconds, setSeconds] = useState(0);
+function Timer({workHours, workMinutes, workSeconds}) {
+    const [hours, setHours] = useState(workHours);
+    const [minutes, setMinutes] = useState(workMinutes);
+    const [seconds, setSeconds] = useState(workSeconds);
     const [isRunning, setIsRunning] = useState(false);
     const [isBreak, setIsBreak] = useState(false);
     const [currentScreen, setCurrentScreen] = useState("");
+
+    useEffect(() => {
+        setHours(workHours);
+        setMinutes(workMinutes);
+        setSeconds(workSeconds);
+    }, [workHours, workMinutes, workSeconds]);
 
     useEffect(() => {
         let interval;

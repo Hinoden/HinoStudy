@@ -3,7 +3,10 @@ import { IoMdSettings } from "react-icons/io";
 import Popup from 'reactjs-popup';
 import '../styles/Navbar.css';
 
-function Navbar({setIsPopupOpen}) {
+function Navbar({setIsPopupOpen, setWorkHours, setWorkMinutes, setWorkSeconds}) {
+    const [workHoursPopup, setWorkHoursPopup] = useState(0);
+    const [workMinutesPopup, setWorkMinutesPopup] = useState(0);
+    const [workSecondsPopup, setWorkSecondsPopup] = useState(0);
     return (
         <div className="NavContainer">
             <p id="logo">HinoStudy</p>
@@ -13,7 +16,12 @@ function Navbar({setIsPopupOpen}) {
                     {<button id="settings"><IoMdSettings /> Settings</button>}
                     modal nested
                     onOpen={() => setIsPopupOpen(true)}
-                    onClose={() => setIsPopupOpen(false)}>
+                    onClose={() => {
+                        setIsPopupOpen(false);
+                        setWorkHours(workHoursPopup);
+                        setWorkMinutes(workMinutesPopup);
+                        setWorkSeconds(workSecondsPopup);
+                    }}>
                     {
                         close => (
                             <div className='PopupContainer'>
@@ -27,15 +35,15 @@ function Navbar({setIsPopupOpen}) {
                                     <div className='work'>
                                         <div className="column">
                                             <label>Hours</label>
-                                            <input id="settingTimer" value={0} />
+                                            <input id="settingTimer" value={workHoursPopup} onChange={(e) => setWorkHoursPopup(parseInt(e.target.value) || 0)}/>
                                         </div>
                                         <div className="column">
                                             <label>Minutes</label>
-                                            <input id="settingTimer" value={0} />
+                                            <input id="settingTimer" value={workMinutesPopup} onChange={(e) => setWorkMinutesPopup(parseInt(e.target.value) || 0)} />
                                         </div>
                                         <div className="column">
                                             <label>Seconds</label>
-                                            <input id="settingTimer" value={0} />
+                                            <input id="settingTimer" value={workSecondsPopup} onChange={(e) => setWorkSecondsPopup(parseInt(e.target.value) || 0)} />
                                         </div>
                                     </div>
                                     <p id='breakText'>Break Time</p>
