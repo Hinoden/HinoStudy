@@ -4,7 +4,7 @@ import { BsFillPlayFill, BsPauseFill, BsStopFill } from "react-icons/bs";
 import { IoIosSkipForward } from "react-icons/io";
 import '../styles/Timer.css';
 
-function Timer({workHours, workMinutes, workSeconds}) {
+function Timer({workHours, workMinutes, workSeconds, breakHours, breakMinutes, breakSeconds}) {
     const [hours, setHours] = useState(workHours);
     const [minutes, setMinutes] = useState(workMinutes);
     const [seconds, setSeconds] = useState(workSeconds);
@@ -13,10 +13,18 @@ function Timer({workHours, workMinutes, workSeconds}) {
     const [currentScreen, setCurrentScreen] = useState("");
 
     useEffect(() => {
-        setHours(workHours);
-        setMinutes(workMinutes);
-        setSeconds(workSeconds);
-    }, [workHours, workMinutes, workSeconds]);
+        if (!isRunning){
+            if (isBreak){
+                setHours(breakHours);
+                setMinutes(breakMinutes);
+                setSeconds(breakSeconds);
+            } else{
+                setHours(workHours);
+                setMinutes(workMinutes);
+                setSeconds(workSeconds);
+            }
+        }
+    }, [workHours, workMinutes, workSeconds, breakHours, breakMinutes, breakSeconds, isRunning, isBreak]);
 
     useEffect(() => {
         let interval;
@@ -43,14 +51,19 @@ function Timer({workHours, workMinutes, workSeconds}) {
 
     function handleTimerEnd() {
         setIsRunning(false);
+        setIsBreak(!isBreak);
 
         if (isBreak) {
             setCurrentScreen("Time's up! Let's get back to working!");
+            setHours(breakHours);
+            setMinutes(breakMinutes);
+            setSeconds(breakSeconds);
         } else {
             setCurrentScreen("Time's up! Let's take a break!");
+            setHours(workHours);
+            setMinutes(workMinutes);
+            setSeconds(workSeconds);
         }
-
-        setIsBreak(!isBreak);
     }
 
     function startTimer() {
@@ -73,19 +86,30 @@ function Timer({workHours, workMinutes, workSeconds}) {
 
     function resetTimer() {
         setIsRunning(false);
-        setHours(0);
-        setMinutes(0);
-        setSeconds(0);
+        if (isBreak){
+            setHours(breakHours);
+            setMinutes(breakMinutes);
+            setSeconds(breakSeconds);
+        } else{
+            setHours(workHours);
+            setMinutes(workMinutes);
+            setSeconds(workSeconds);
+        }
     }
 
     function skipTimer() {
         setIsBreak(!isBreak);
         if (isBreak) {
             setCurrentScreen("Time's up! Let's get back to working!");
+            setHours(workHours);
+            setMinutes(workMinutes);
+            setSeconds(workSeconds);
         } else {
             setCurrentScreen("Time's up! Let's take a break!");
+            setHours(breakHours);
+            setMinutes(breakMinutes);
+            setSeconds(breakSeconds);
         }
-        resetTimer();
     }
 
     const changeSeconds = (e) => {

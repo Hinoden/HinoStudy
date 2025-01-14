@@ -9,15 +9,18 @@ function App() {
   const [workHours, setWorkHours] = useState(0);
   const [workMinutes, setWorkMinutes] = useState(0);
   const [workSeconds, setWorkSeconds] = useState(0);
+  const [breakHours, setBreakHours] = useState(0);
+  const [breakMinutes, setBreakMinutes] = useState(0);
+  const [breakSeconds, setBreakSeconds] = useState(0);
   return (
     <div className= {`AppContainer ${isPopupOpen ? 'dimmed' : ''}`}>
-      <Navbar setIsPopupOpen={setIsPopupOpen} setWorkHours={setWorkHours} setWorkMinutes={setWorkMinutes} setWorkSeconds={setWorkSeconds}/>
+      <Navbar setIsPopupOpen={setIsPopupOpen} setWorkHours={setWorkHours} setWorkMinutes={setWorkMinutes} setWorkSeconds={setWorkSeconds} setBreakHours={setBreakHours} setBreakMinutes={setBreakMinutes} setBreakSeconds={setBreakSeconds}/>
       <div className="HorizontalContainer">
         <div className="TasksContainer">
           <Tasks />
         </div>
         <div className="TimerContainer">
-          <Timer workHours={workHours} workMinutes={workMinutes} workSeconds={workSeconds}/>
+          <Timer workHours={workHours} workMinutes={workMinutes} workSeconds={workSeconds} breakHours={breakHours} breakMinutes={breakMinutes} breakSeconds={breakSeconds}/>
         </div>
       </div>
     </div>
