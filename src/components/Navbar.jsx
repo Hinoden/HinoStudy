@@ -3,18 +3,21 @@ import { IoMdSettings } from "react-icons/io";
 import Popup from 'reactjs-popup';
 import '../styles/Navbar.css';
 
-function Navbar({setIsPopupOpen, setWorkHours, setWorkMinutes, setWorkSeconds, setBreakHours, setBreakMinutes, setBreakSeconds}) {
+function Navbar({setIsBrainrot, setIsPopupOpen, setWorkHours, setWorkMinutes, setWorkSeconds, setBreakHours, setBreakMinutes, setBreakSeconds}) {
     const [workHoursPopup, setWorkHoursPopup] = useState(0);
     const [workMinutesPopup, setWorkMinutesPopup] = useState(0);
     const [workSecondsPopup, setWorkSecondsPopup] = useState(0);
     const [breakHoursPopup, setBreakHoursPopup] = useState(0);
     const [breakMinutesPopup, setBreakMinutesPopup] = useState(0);
     const [breakSecondsPopup, setBreakSecondsPopup] = useState(0);
+
+    const showBrainrot = () => setIsBrainrot(prev => !prev);
+
     return (
         <div className="NavContainer">
             <p id="logo">HinoStudy</p>
             <div className="ButContainer">
-                <button id="brainrot">Brainrot</button>
+                <button id="brainrot" onClick={showBrainrot}>Brainrot</button>
                 <Popup trigger = 
                     {<button id="settings"><IoMdSettings /> Settings</button>}
                     modal nested
