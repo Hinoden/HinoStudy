@@ -1,16 +1,22 @@
 import { useState } from 'react';
-import SignUp from './components/SignUp.jsx';
-import Login from './components/Login.jsx';
+import {BrowserRouter, Routes, Route} from 'react-router-dom';
+import AuthPage from './components/AuthPage.jsx';
 import './App.css';
 
 function App() {
-
   return (
-    <div className="App">
-      <SignUp />
-      <Login />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={
+          // <div className="authContainer">
+          //   <Login/>
+          //   <SignUp/>
+          // </div>
+          <AuthPage />
+        }/>
+      </Routes>
+    </BrowserRouter>
   )
 }
 
-export default App
+export default App;

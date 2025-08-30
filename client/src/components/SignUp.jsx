@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import Axios from "axios";
 import Cookies from "universal-cookie";
+import '../styles/SignUp.css';
 
 function SignUp() {
     const cookies = new Cookies();
@@ -19,21 +20,34 @@ function SignUp() {
     }
     return (
         <div className="signUpContainer">
-            <label>Sign Up</label>
-            <input placeholder="First Name" onChange={(event) => {
-                setUser({...user, firstName: event.target.value});
-            }}/>
-            <input placeholder="Last Name" onChange={(event) => {
-                setUser({...user, lastName: event.target.value});
-            }}/>
-            <input placeholder="Username" onChange={(event) => {
-                setUser({...user, username: event.target.value});
-            }}/>
-            <input placeholder="Password" onChange={(event) => {
-                setUser({...user, password: event.target.value});
-            }}/>
+            <label className="title">Sign Up</label>
+            <p className="subtitle">Welcome! Please enter your details.</p>
+            <div className="firstName">
+                <span class="material-symbols-outlined">person</span>
+                <input placeholder="First Name" onChange={(event) => {
+                    setUser({...user, firstName: event.target.value});
+                }}/>
+            </div>
+            <div className="lastName">
+                <span class="material-symbols-outlined">person</span>
+                <input placeholder="Last Name" onChange={(event) => {
+                    setUser({...user, lastName: event.target.value});
+                }}/>
+            </div>
+            <div className="userName">
+                <span class="material-symbols-outlined">person</span>
+                <input placeholder="Username" onChange={(event) => {
+                    setUser({...user, username: event.target.value});
+                }}/>
+            </div>
+            <div className="passWord">
+                <span class="material-symbols-outlined">lock</span>
+                <input placeholder="Password" onChange={(event) => {
+                    setUser({...user, password: event.target.value});
+                }}/>
+            </div>
 
-            <button onClick={signUp}>Sign Up</button>
+            <button className="authButton" onClick={signUp}>Sign Up</button>
         </div>
     )
 }
