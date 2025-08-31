@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import AuthPage from './components/AuthPage.jsx';
+import Home from './components/Home.jsx';
 import './App.css';
 
 function App() {
@@ -8,11 +9,10 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={
-          // <div className="authContainer">
-          //   <Login/>
-          //   <SignUp/>
-          // </div>
           <AuthPage />
+        }/>
+        <Route path="/home" element={
+          <Home />
         }/>
       </Routes>
     </BrowserRouter>
