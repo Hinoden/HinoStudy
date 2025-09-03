@@ -20,11 +20,16 @@ function Login() {
                 password
             });
 
-            setCookies("access_token", response.data.token);
-            window.localStorage.setItem("userID", response.data.userID);
-            navigate("/home");  //redirect to home page (CHANGE LATER)
+            if (response.data.token){
+                setCookies("access_token", response.data.token);
+                window.localStorage.setItem("userID", response.data.userID);
+                navigate("/home");
+            } else {
+                alert(response.data.message);
+            }
         } catch (err) {
             console.error(err);
+            alert("An error occurred during login. Please try again.");
         }
     };
     

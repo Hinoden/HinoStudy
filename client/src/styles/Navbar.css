@@ -1,0 +1,26 @@
+.navButton {
+    border: none;
+    background-color: rgb(124, 178, 255);
+    height: 45px;
+    width: 120px;
+    font-weight: bold;
+    color: white;
+    font-size: 16px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.navbarContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    background-color: pink;
+}
+
+.navTitle {
+    font-size: 24px;
+    font-weight: bold;
+    color: rgb(124, 178, 255);
+    font-family: 'Arial', sans-serif;
+}
