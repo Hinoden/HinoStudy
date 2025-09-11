@@ -4,11 +4,42 @@ import '../styles/Home.css';
 
 function Home() {
     const [seconds, setSeconds] = React.useState(0);
-    const [tempSecs, setTempSecs] = React.useState(0);
     const [minutes, setMinutes] = React.useState(25);
+    const [tempSecs, setTempSecs] = React.useState(0);
     const [tempMins, setTempMins] = React.useState(25);
+
+    const [shortSeconds, setShortSeconds] = React.useState(0);
+    const [shortMinutes, setShortMinutes] = React.useState(5);
+    const [shortTempSecs, setShortTempSecs] = React.useState(0);
+    const [shortTempMins, setShortTempMins] = React.useState(5);
+
+    const [longSeconds, setLongSeconds] = React.useState(0);
+    const [longMinutes, setLongMinutes] = React.useState(15);
+    const [longTempSecs, setLongTempSecs] = React.useState(0);
+    const [longTempMins, setLongTempMins] = React.useState(15);
+
     const [isActive, setIsActive] = React.useState(false);
     const [showPopup, setShowPopup] = React.useState(false);
+    const [status, setStatus] = React.useState("work"); // work, short, long
+    const [number, setNumber] = React.useState(0); // number of pomodoros completed
+
+    const changeStatus = () => {
+        if (number !== 0 && number % 6 === 0) {
+            setStatus("long");
+            setMinutes(longMinutes);
+            setSeconds(longSeconds);
+        } else if (status === "work") {
+            setStatus("short");
+            setMinutes(shortMinutes);
+            setSeconds(shortSeconds);
+        } else if (status === "short" || status === "long") {
+            setStatus("work");
+            setMinutes(tempMins);
+            setSeconds(tempSecs);
+        }
+        setNumber(number + 1);
+        setIsActive(false);
+    };
 
     React.useEffect(() => {
         if (!isActive) return; // do nothing if not active
@@ -40,7 +71,7 @@ function Home() {
                     <div className="pomo-nav">
                         <h1 className="homeTitle">Pomodoro</h1>
                         <div className="pomo-buttons">
-                            <button className="pomo-button"><span class="material-symbols-outlined">skip_next</span></button>
+                            <button className="pomo-button" onClick={changeStatus}><span class="material-symbols-outlined">skip_next</span></button>
                             <button className="pomo-button" onClick={() => setShowPopup(true)}><span class="material-symbols-outlined">settings</span></button>
                         </div>
                     </div>
@@ -48,6 +79,9 @@ function Home() {
                         <p className="pomoNumber">{String(minutes).padStart(2, "0")}</p>
                         <p className="pomoNumber">:</p>
                         <p className="pomoNumber">{String(seconds).padStart(2, "0")}</p>
+                    </div>
+                    <div className="statusContainer">
+                        <p className="pomoText">{status === "work" ? "Time to focus! You can do this!" : status === "short" ? "Time for a short break!" : "Take a long break. You deserve it :)"}</p>
                     </div>
                     <button className="startButton" onClick={() => setIsActive(!isActive)}>{isActive ? "Stop" : "Start"}</button>
                 </div>
@@ -68,29 +102,49 @@ function Home() {
                                     let val = Number(e.target.value);
                                     if (val > 60) val = 60;
                                     if (val < 1) val = 1;
-                                    setTempMins(Number(val))
+                                    setTempMins(Number(val));
                                 }}/>
                                 <span>minutes</span>
                                 <input type="number" min="0" max="59" value={tempSecs} onChange={(e) => {
                                     let val = Number(e.target.value);
                                     if (val > 59) val = 59;
                                     if (val < 0) val = 0;
-                                    setTempSecs(Number(val))
+                                    setTempSecs(Number(val));
                                 }}/>
                                 <span>seconds</span>
                             </div>
                             <div className="short-input">
                                 <p className="popup-subtitle">Short Break:</p>
-                                <input type="number" min="1" max="60" defaultValue={25} />
+                                <input type="number" min="1" max="60" value={shortTempMins} onChange={(e) => {
+                                    let val = Number(e.target.value);
+                                    if (val > 60) val = 60;
+                                    if (val < 1) val = 1;
+                                    setShortTempMins(Number(val));
+                                }} />
                                 <span>minutes</span>
-                                <input type="number" min="0" max="59" defaultValue={0} />
+                                <input type="number" min="0" max="59" value={shortTempSecs} onChange={(e) => {
+                                    let val = Number(e.target.value);
+                                    if (val > 59) val = 59;
+                                    if (val < 0) val = 0;
+                                    setShortTempSecs(Number(val));
+                                }} />
                                 <span>seconds</span>
                             </div>
                             <div className="long-input">
                                 <p className="popup-subtitle">Long Break:</p>
-                                <input type="number" min="1" max="60" defaultValue={25} />
+                                <input type="number" min="1" max="60" value={longTempMins} onChange={(e) => {
+                                    let val = Number(e.target.value);
+                                    if (val > 60) val = 60;
+                                    if (val < 1) val = 1;
+                                    setLongTempMins(Number(val));
+                                }} />
                                 <span>minutes</span>
-                                <input type="number" min="0" max="59" defaultValue={0} />
+                                <input type="number" min="0" max="59" value={longTempSecs} onChange={(e) => {
+                                    let val = Number(e.target.value);
+                                    if (val > 59) val = 59;
+                                    if (val < 0) val = 0;
+                                    setLongTempSecs(Number(val));
+                                }}/>
                                 <span>seconds</span>
                             </div>
                         </div>
