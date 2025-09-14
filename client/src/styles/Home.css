@@ -8,7 +8,7 @@
     font-family: 'Arial', sans-serif;
 }
 
-.pomodoro-container, .todo-container{
+.pomodoro-container{
     background-color: rgb(255, 217, 224);
     width: 600px;
     height: 500px;
@@ -16,7 +16,7 @@
     border-radius: 10px;
 }
 
-.pomo-nav{
+.pomo-nav, .todo-nav{
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -123,4 +123,91 @@
     filter: blur(5px);       /* applies blur to everything inside */
     pointer-events: none;    /* prevents clicking the background */
     user-select: none;       /* prevents text selection */
+}
+
+.todo-container{
+    background-color: rgb(255, 217, 224);
+    width: 600px;
+    height: 500px;
+    border-radius: 10px;
+}
+
+.todo-add {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.todo-input {
+    width: 70%;
+    height: 40px;
+    border-radius: 20px;
+    padding: 0 10px;
+    font-size: 16px;
+    border: 1px solid grey;
+    outline: none;
+    font-family: 'Arial', sans-serif;
+}
+
+.todo-list {
+    max-height: 350px;
+    overflow-y: auto;
+}
+
+.addButton {
+    font-family: 'Arial', sans-serif;
+    border: none;
+    background-color: rgb(124, 178, 255);
+    height: 40px;
+    width: 100px;
+    font-weight: bold;
+    color: white;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+ul, li {
+    list-style: none;
+    font-size: 18px;
+    padding: 30px 8px 0px 70px;
+    user-select: none;
+    cursor: pointer;
+    position: relative;
+    font-family: 'Arial', sans-serif;
+}
+
+ul, li::before{
+    content: '';
+    position: absolute;
+    height: 23px;
+    width: 23px;
+    border-radius: 50%;
+    background-color: rgb(255, 255, 255);
+    border: 2px solid grey;
+    top: 29px;
+    left: 30px;
+}
+
+ul, li.checked{
+    color: #555;
+    text-decoration: line-through;
+}
+
+ul, li.checked::before{
+    background-color: rgb(171, 255, 171);
+}
+
+li .close {
+  position: absolute;
+  right: 20px;
+  top: 30px;
+  font-size: 22px;
+  cursor: pointer;
+  color: red;
+  user-select: none;
+}
+
+li .close:hover {
+  color: darkred;
 }

@@ -23,6 +23,9 @@ function Home() {
     const [status, setStatus] = React.useState("work"); // work, short, long
     const [number, setNumber] = React.useState(0); // number of pomodoros completed
 
+    const [task, setTask] = React.useState("");
+    const [todos, setTodos] = React.useState([]);
+
     const changeStatus = () => {
         if (number !== 0 && number % 6 === 0) {
             setStatus("long");
@@ -63,6 +66,27 @@ function Home() {
     return () => clearInterval(interval); // cleanup on unmount or toggle
 }, [isActive, minutes]);
 
+    function addTask(){
+        if (task.trim() === '') {
+            alert("You must write something!");
+        } else {
+            setTodos([...todos, { text: task, done: false }]);
+            setTask("");
+        }
+    }
+
+    function toggleTask(index) {
+        setTodos(
+            todos.map((todo, i) =>
+                i === index ? { ...todo, done: !todo.done } : todo
+            )
+        );
+    }
+
+    function removeTask(index) {
+        setTodos(todos.filter((_, i) => i !== index));
+    }
+
     return (
         <div>
             <Navbar />
@@ -86,7 +110,27 @@ function Home() {
                     <button className="startButton" onClick={() => setIsActive(!isActive)}>{isActive ? "Stop" : "Start"}</button>
                 </div>
                 <div className="todo-container">
-                    <h1 className="homeTitle">To-Do List</h1>
+                    <div className="todo-nav">
+                        <h1 className="homeTitle">To-Do List</h1>
+                    </div>
+                    <div className="todo-add">
+                        <input className="todo-input" placeholder="Add a new task..." value={task} onChange={(e) => setTask(e.target.value)}/>
+                        <button className="addButton" onClick={addTask}>Add</button>
+                    </div>
+                    <div className="todo-list">
+                         {/* <li className="checked">Task 1</li>
+                         <li>Task 2</li>
+                         <li>Task 3</li> */}
+                        {todos.map((todo, index) => (
+                            <li key={index} className={todo.done ? "checked" : ""} onClick={() => toggleTask(index)}>
+                                {todo.text}
+                                <span className="close" onClick={(e) => {
+                                    e.stopPropagation();
+                                    removeTask(index);
+                                    }}>x</span>
+                            </li>
+                        ))}
+                    </div>
                 </div>
             </div>
 
