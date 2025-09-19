@@ -170,7 +170,7 @@
 ul, li {
     list-style: none;
     font-size: 18px;
-    padding: 30px 8px 0px 70px;
+    padding: 30px 8px 10px 70px;
     user-select: none;
     cursor: pointer;
     position: relative;

@@ -45,26 +45,32 @@ function Home() {
     };
 
     React.useEffect(() => {
-        if (!isActive) return; // do nothing if not active
+        if (!isActive) return;
 
         const interval = setInterval(() => {
             setSeconds(prevSeconds => {
                 if (prevSeconds === 0) {
-                    if (minutes > 0) {
-                        setMinutes(prevMinutes => prevMinutes - 1);
-                        return 59;
-                    } else {
-                        setIsActive(false); // stop timer at 0:00
-                        return 0;
-                    }
+                    return 59;
                 } else {
                     return prevSeconds - 1;
                 }
             });
-    }, 1000); // 1000ms = 1 second
+            setMinutes(prevMinutes => {
+                // Only decrement minutes if seconds just rolled over to 59
+                if (seconds === 0) {
+                    if (prevMinutes > 0) {
+                        return prevMinutes - 1;
+                    } else {
+                        setIsActive(false); // stop timer at 0:00
+                        return 0;
+                    }
+                }
+                return prevMinutes;
+            });
+        }, 1000);
 
-    return () => clearInterval(interval); // cleanup on unmount or toggle
-}, [isActive, minutes]);
+        return () => clearInterval(interval);
+    }, [isActive, seconds]);
 
     function addTask(){
         if (task.trim() === '') {
